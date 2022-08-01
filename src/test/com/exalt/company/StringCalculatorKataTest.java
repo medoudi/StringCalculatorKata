@@ -41,6 +41,12 @@ public class StringCalculatorKataTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
+    @Test
+    public void sum_should_equals_sum_of_numbers_in_String_when_there_is_more_than_two_numbers() {
+        assertEquals(10,StringCalculatorKata.add("1,2,3,4"));
+
+    }
+
 
 
 }
