@@ -1,4 +1,5 @@
 package com.exalt.company;
+import com.exalt.company.exception.StringCalculatorException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -11,8 +12,12 @@ public class StringCalculatorKata {
             return 0;
         }
         else {
-
-            return Arrays.stream(numbers.split(",")).mapToInt(Integer ::parseInt).sum();
+            try {
+                return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).sum();
+            }
+            catch (NumberFormatException exception ) {
+                throw new StringCalculatorException("The given String does not respect the described format");
+            }
         }
     }
 }
