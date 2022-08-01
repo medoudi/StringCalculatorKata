@@ -1,5 +1,5 @@
 package com.exalt.company;
-import com.exalt.company.exception.StringCalculatorException;
+import com.exalt.company.exception.BadFormatException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -16,7 +16,7 @@ public class StringCalculatorKata {
                 return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).sum();
             }
             catch (NumberFormatException exception ) {
-                throw new StringCalculatorException("The given String does not respect the described format");
+                throw new BadFormatException("The given String does not respect the described format");
             }
         }
     }
