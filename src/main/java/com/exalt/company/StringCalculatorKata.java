@@ -11,6 +11,7 @@ public class StringCalculatorKata {
             return 0;
         }
         else {
+
             return Arrays.stream(numbers.split(",")).mapToInt(Integer ::parseInt).sum();
         }
     }
