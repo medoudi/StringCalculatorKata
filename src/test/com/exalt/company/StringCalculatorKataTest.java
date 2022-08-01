@@ -65,6 +65,21 @@ public class StringCalculatorKataTest {
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
+    @Test
+    void sum_when_delimitter_is_specified_in_given_string() {
+
+        assertEquals(3,StringCalculatorKata.add("//[;]\n1;2"));
+        assertEquals(3,StringCalculatorKata.add("//[*]\n1*2"));
+        assertEquals(3,StringCalculatorKata.add("//[|]\n1|2"));
+    }
+
+    @Test
+    void should_throw_exception_when_delimitter_is_specified_in_given_string_but_string_does_not_respect_the_right_format() {
+        Exception exception = assertThrows(BadFormatException.class , () -> {StringCalculatorKata.add("/;\n1;2");});
+        String expectedMessage = "Error when mapping to int";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
 
 
 }
