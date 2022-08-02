@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
@@ -50,8 +52,10 @@ public class StringCalculatorKata {
      */
     public IntStream verifyAllNumbersArePositive(String[] numbers ) {
         Supplier<IntStream> intStreamSupplier = () -> Arrays.stream(numbers).mapToInt(Integer::parseInt);
-        if(intStreamSupplier.get().filter(el -> el < 0).findAny().isPresent()) {
-            throw new NegativeException("Negative Number is Found");
+        List<Integer> negatives = intStreamSupplier.get().filter(el -> el < 0).boxed().collect(Collectors.toList());
+        if(negatives.size() > 0 ) {
+
+            throw new NegativeException("Negatives not allowed "+negatives);
         }
         return intStreamSupplier.get();
     }
