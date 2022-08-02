@@ -2,6 +2,7 @@ package com.exalt.company;
 
 import com.exalt.company.exception.BadFormatException;
 import com.exalt.company.exception.DelimitterException;
+import com.exalt.company.exception.NegativeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,14 @@ public class StringCalculatorKataTest {
     void should_throw_exception_when_delimitter_and_given_string_not_consistent() {
         Exception exception = assertThrows(DelimitterException.class , () -> {StringCalculatorKata.add("//[;]");});
         String expectedMessage = "Delimitter is not suitable to split strings";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    void should_throw_exception_when_there_is_negative_number_in_the_given_String() {
+        Exception exception = assertThrows(NegativeException.class , () -> {StringCalculatorKata.add("//[;]\n1;-2");});
+        String expectedMessage = "Negative Number is Found";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
