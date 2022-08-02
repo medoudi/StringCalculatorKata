@@ -5,17 +5,21 @@ import com.exalt.company.exception.DelimitterException;
 import com.exalt.company.exception.NegativeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 public class StringCalculatorKataTest {
 
     private StringCalculatorKata StringCalculatorKata;
 
+    private DelimitterCalculator delimitterCalculator;
+
     @BeforeEach
     public void initialisation() {
-        StringCalculatorKata = new StringCalculatorKata();
+        delimitterCalculator = new DelimitterCalculator();
+        StringCalculatorKata = new StringCalculatorKata(delimitterCalculator);
     }
 
     @Test
