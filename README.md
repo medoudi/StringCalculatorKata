@@ -2,14 +2,17 @@
 
 
 
-## Requirements
+## Environment
 - [ ] Java 8+
 - [ ] Maven 3
 - [ ] Junit 5
 - [ ] Use StringCalculatorKata and dont change project structure
-
+##Description
+StringCalculatorKata is a project used to sum all the numbers
+in a given String.This project is developed by following the steps
+described below :
 ### Step 1
-Goto StringCalculatorKata and put your first implementation of:
+The  first implementation of:
 
 ```
  int add(String numbers)
@@ -22,14 +25,12 @@ For an empty string it will return 0.
 
 ### Step 2
 
-Allow the Add method to handle an unknown amount of numbers.
+The Add method should handle an unknown amount of numbers.
 
 ### Step 3
 
-Allow the "add" method to handle new lines between numbers (instead of commas):
+The "add" method should handle new lines between numbers (instead of commas):
 
-- The following input is ok: “1\n2,3” (will equal 6)
-- The following input is NOT ok: “1,\n” (not need to prove it - just clarifying)
 
 ### Step 4
 Support different delimiters:

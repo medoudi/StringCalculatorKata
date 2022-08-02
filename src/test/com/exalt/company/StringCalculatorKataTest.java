@@ -98,7 +98,15 @@ public class StringCalculatorKataTest {
     @Test
     void should_throw_exception_when_there_is_negative_number_in_the_given_String() {
         Exception exception = assertThrows(NegativeException.class , () -> {StringCalculatorKata.add("//[;]\n1;-2");});
-        String expectedMessage = "Negative Number is Found";
+        String expectedMessage = "Negatives not allowed [-2]";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    void should_throw_exception_when_there_is_negative_numbers_in_the_given_String() {
+        Exception exception = assertThrows(NegativeException.class , () -> {StringCalculatorKata.add("//[;]\n1;-2;-5;-10");});
+        String expectedMessage = "Negatives not allowed [-2, -5, -10]";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
