@@ -1,8 +1,10 @@
 package com.exalt.company;
 
 import com.exalt.company.exception.BadFormatException;
+import com.exalt.company.exception.DelimitterException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -76,10 +78,18 @@ public class StringCalculatorKataTest {
     @Test
     void should_throw_exception_when_delimitter_is_specified_in_given_string_but_string_does_not_respect_the_right_format() {
         Exception exception = assertThrows(BadFormatException.class , () -> {StringCalculatorKata.add("/;\n1;2");});
-        String expectedMessage = "Error when mapping to int";
+        String expectedMessage = "The given String does not respect the described format";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
     }
+    @Test
+    void should_throw_exception_when_delimitter_and_given_string_not_consistent() {
+        Exception exception = assertThrows(DelimitterException.class , () -> {StringCalculatorKata.add("//[;]");});
+        String expectedMessage = "Delimitter is not suitable to split strings";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 
 
 }
