@@ -1,16 +1,17 @@
 # String Calculator Kata
 
-
-
 ## Environment
 - [ ] Java 8+
 - [ ] Maven 3
 - [ ] Junit 5
-- [ ] Use StringCalculatorKata and dont change project structure
-##Description
+
+
+## Description
 StringCalculatorKata is a project used to sum all the numbers
 in a given String.This project is developed by following the steps
-described below :
+described below 
+
+
 ### Step 1
 The  first implementation of:
 
@@ -41,9 +42,3 @@ Support different delimiters:
 ### Step 5
 Calling "add" with a negative number will throw an exception “negatives not allowed” - and the negative that was passed.
 If there are multiple negatives, show all of them in the exception message.
-
-### Step 6
-Send us your public repository with StringCalculatorKata implementation so that we can give you feedback
-
-## Credits
-Inspired by Roy Osherove [https://osherove.com/]
