@@ -1,13 +1,16 @@
 package com.exalt.company;
 import com.exalt.company.exception.BadFormatException;
 import com.exalt.company.exception.DelimitterException;
+import com.exalt.company.exception.NegativeException;
 import com.exalt.company.model.SeparatedNumbersAndDelimitter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 @Service
 public class StringCalculatorKata {
@@ -25,7 +28,8 @@ public class StringCalculatorKata {
         } else {
             try {
                 String[] numbers = input.startsWith("//") ? getNumbers(input) : input.split(DELIMITTER_REGEX);
-                return Arrays.stream(numbers).mapToInt(Integer::parseInt).sum();
+                IntStream numbersAsStream = verifyAllNumbersArePositive(numbers);
+                return numbersAsStream.sum();
             } catch(NumberFormatException exception) {
                 throw new BadFormatException("The given String does not respect the described format");
             }
@@ -68,4 +72,16 @@ public class StringCalculatorKata {
         return separatedNumbersAndDelimitter;
     }
 
+    /**
+     *
+     * @param numbers
+     * @return
+     */
+    public IntStream verifyAllNumbersArePositive(String[] numbers ) {
+        Supplier<IntStream> intStreamSupplier = () -> Arrays.stream(numbers).mapToInt(Integer::parseInt);
+        if(intStreamSupplier.get().filter(el -> el < 0).findAny().isPresent()) {
+            throw new NegativeException("Negative Number is Found");
+        }
+        return intStreamSupplier.get();
+    }
 }
